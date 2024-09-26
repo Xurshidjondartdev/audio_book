@@ -100,10 +100,18 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.g_translate)),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.dark_mode),
+          ),
+        ],
         title: const Text('Main Page'),
+        centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body:const Center(
+      body: const Center(
         child: Text('Hello, Book'),
       ),
     );
