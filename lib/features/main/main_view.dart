@@ -1,118 +1,62 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'main_logic.dart';
-
-// class MainPage extends StatelessWidget {
-//   static const String route = "/main";
-
-//   MainPage({super.key});
-
-//   final logic = Get.find<MainLogic>();
-//   final state = Get.find<MainLogic>().state;
-
-//   final pages = [
-//     AuthPage()
-//     // HomePage(),
-//     // HistoryPage(),
-//     // ProfilePage(),
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Row(
-//           mainAxisSize: MainAxisSize.min,
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             const Text(
-//               'Sez',
-//               style: TextStyle(fontSize: 40),
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.only(top: 6),
-//               child: SizedBox(
-//                 height: 40,
-//                 width: 100,
-//                 child: Lottie.asset("assets/lotties/on_off_switch_2.json"),
-//               ),
-//             ),
-//           ],
-//         ),
-//         centerTitle: true,
-//         backgroundColor: const Color.fromRGBO(248, 250, 251, 1),
-//       ),
-//       drawer: const Drawer(),
-//       body: PageView(
-//         pageSnapping: false,
-//         allowImplicitScrolling: false,
-//         physics: const NeverScrollableScrollPhysics(),
-//         controller: logic.bottomNavController,
-//         children: pages,
-//       ),
-//       bottomNavigationBar: Obx(
-//         () => BottomNavigationBar(
-//           onTap: (value) {
-//             // AppHapticManager.heavyImpact();
-//             logic.bottomNavController.jumpToPage(value);
-//             state.selectedIndex(value);
-//           },
-//           currentIndex: state.selectedIndex.value,
-//           type: BottomNavigationBarType.fixed,
-//           showUnselectedLabels: false,
-//           selectedItemColor: AppColor.primary60,
-//           unselectedIconTheme: const IconThemeData(color: AppColor.basic60),
-//           selectedIconTheme: const IconThemeData(color: AppColor.primary60),
-//           selectedLabelStyle: AppTypography.footnote2.copyWith(color: AppColor.error30),
-//           showSelectedLabels: true,
-//           enableFeedback: true,
-//           useLegacyColorScheme: true,
-//           backgroundColor: const Color.fromRGBO(248, 250, 251, 1),
-//           landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
-//           items: [
-//             const BottomNavigationBarItem(
-//               icon: Icon(Icons.sunny),
-//               label: 'Home',
-//             ),
-//             const BottomNavigationBarItem(
-//               icon: Icon(Icons.history),
-//               label: 'History',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: const Icon(Icons.account_circle_outlined),
-//               label: 'profile'.tr,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:audio_book/core/manager/setting_contoller.dart';
+import 'package:audio_book/features/main/main_logic.dart';
+import 'package:audio_book/localization/languages.dart';
+import 'package:audio_book/ui/utils/app_color.dart';
+import 'package:audio_book/ui/utils/app_typography.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainView extends StatelessWidget {
   static const String route = "/main";
+  MainView({super.key});
 
-  const MainView({super.key});
+  final logic = Get.find<MainLogic>();
+  final state = Get.find<MainLogic>().state;
 
   @override
   Widget build(BuildContext context) {
+    final settingsController = Get.find<SettingsController>();
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.g_translate)),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.dark_mode),
+          Obx(
+            () => DropdownButton<String>(
+              value: settingsController.selectedLanguage.value,
+              icon: const Icon(
+                Icons.g_translate,
+                color: AppColor.basic10,
+              ),
+              dropdownColor: Theme.of(context).primaryColor,
+              items: appLanguages.map((language) {
+                return DropdownMenuItem<String>(
+                  value: language.symbol,
+                  child: Text(language.languageNameInEnglish, style: AppTypography.bodyParagraph1), // Change language.language to language.languageNameInEnglish
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                if (newValue != null) {
+                  settingsController.changeLanguage(newValue);
+                }
+              },
+            ),
           ),
         ],
-        title: const Text('Main Page'),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.dark_mode,
+            color: AppColor.basic10,
+          ),
+        ),
+        title: Text('home_title'.tr, style: AppTypography.title3), // Use localization key instead of hardcoded text
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: const Center(
-        child: Text('Hello, Book'),
+      body: Center(
+        child: Text(
+          'Hello, Book'.tr,
+          style: AppTypography.accentTitle,
+        ),
       ),
     );
   }

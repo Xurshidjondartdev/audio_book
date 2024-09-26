@@ -11,7 +11,7 @@ class SplashLogicImpl extends GetxController implements SplashLogic {
   void startSplash() {
     // 3 soniya kutib, asosiy sahifaga o'tamiz
     Future.delayed(const Duration(seconds: 3)).then((_) {
-      Get.offAll(const MainView()); // Bu yerda Get.to o'rniga Get.offAll ishlatilgan
+      Get.offNamed(MainView.route); // Bu yerda Get.to o'rniga Get.offAll ishlatilgan
     });
   }
 }

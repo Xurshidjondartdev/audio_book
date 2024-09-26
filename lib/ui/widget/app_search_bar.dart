@@ -245,8 +245,12 @@ class _AppAnimationSearchBarState extends State<AppAnimationSearchBar> {
                         FittedBox(
                           child: KCustomButton(
                             widget: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: SvgPicture.asset(Assets.iconsIcSearch, color: widget.searchIconColor)),
+                              padding: const EdgeInsets.all(5),
+                              child: SvgPicture.asset(
+                                Assets.iconsIcSearch,
+                                color: widget.searchIconColor,
+                              ),
+                            ),
                             onPressed: () => setState(
                               () {
                                 _isSearching = true;

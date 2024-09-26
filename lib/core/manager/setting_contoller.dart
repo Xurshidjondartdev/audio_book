@@ -1,4 +1,3 @@
-// settings_controller.dart
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +27,11 @@ class SettingsController extends GetxController {
     Get.changeThemeMode(isDarkTheme.value ? ThemeMode.dark : ThemeMode.light);
   }
 
-  void changeLanguage(String languageCode) {
-    selectedLanguage.value = languageCode;
-    box.write('selectedLanguage', selectedLanguage.value);
-    Get.updateLocale(Locale(selectedLanguage.value));
+  void changeLanguage(String newLanguage) {
+    selectedLanguage.value = newLanguage;
+    box.write('selectedLanguage', selectedLanguage.value); // Save selected language in storage
+
+    // Update the locale based on the selected language
+    Get.updateLocale(Locale(newLanguage));
   }
 }
