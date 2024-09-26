@@ -13,9 +13,9 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     logic.startSplash(); // Splashni boshlash uchun chaqiramiz
 
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
-        child: Text("Splash View"),
+        child: Text("Splash View".tr),
       ),
     );
   }

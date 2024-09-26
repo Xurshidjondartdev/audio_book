@@ -30,7 +30,9 @@ class MainView extends StatelessWidget {
               items: appLanguages.map((language) {
                 return DropdownMenuItem<String>(
                   value: language.symbol,
-                  child: Text(language.languageNameInEnglish, style: AppTypography.bodyParagraph1), // Change language.language to language.languageNameInEnglish
+                  child: Text(language.languageNameInEnglish,
+                      style: AppTypography
+                          .bodyParagraph1), // Change language.language to language.languageNameInEnglish
                 );
               }).toList(),
               onChanged: (String? newValue) {
@@ -41,14 +43,20 @@ class MainView extends StatelessWidget {
             ),
           ),
         ],
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.dark_mode,
-            color: AppColor.basic10,
+        leading: Obx(
+          () => IconButton(
+            onPressed: () {
+              settingsController.toggleTheme(!settingsController.isDarkTheme.value);
+            },
+            icon: Icon(
+              settingsController.isDarkTheme.value ? Icons.light_mode : Icons.dark_mode,
+              color: AppColor.basic10,
+            ),
           ),
         ),
-        title: Text('home_title'.tr, style: AppTypography.title3), // Use localization key instead of hardcoded text
+
+        title: Text('home_title'.tr,
+            style: AppTypography.title3), // Use localization key instead of hardcoded text
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
