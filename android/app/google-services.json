@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230952579989",
+    "project_id": "audio-book-9ea77",
+    "storage_bucket": "audio-book-9ea77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230952579989:android:4eb97cef94b9de59b07c9c",
+        "android_client_info": {
+          "package_name": "com.example.audio_book"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEUZThDVr-bg97y_zIXU9wYkp35G3OfD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

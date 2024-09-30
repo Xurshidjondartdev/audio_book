@@ -8,7 +8,6 @@ import 'package:get_storage/get_storage.dart';
 
 void main() async {
   await setup();
-  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   Get.put(SettingsController(), permanent: true);
   Get.put(MainLogicImpl(), permanent: true);
